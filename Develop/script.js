@@ -38,52 +38,48 @@ function passwordPrompts() {
 
 // Generate a password
 function generatePassword() {
-  // Create a new array to join the characters to
-  var characterSelectors = charactersAlphabet;
+   // Create a new array to join the characters to
+   var characterSelectors = charactersAlphabet;
 
-  // set local variables with values originating from the passwordPrompts function
-  promptValues = passwordPrompts();
-  passwordLength = promptValues[0];
-  includeUppercase = promptValues[1];
-  includeLowercase = promptValues[2];
-  includeNumerical = promptValues[3];
-  includeSpecial = promptValues[4];
-  
-  // Check for upper case
-  if (includeUppercase === "Y" && includeLowercase !== "Y") {   // if only uppercase is selected, change the entire array to uppercase
-    for (var i=0; i<charactersAlphabet.length; i++) {
-      charactersAlphabet[i] = charactersAlphabet[i].toUpperCase()
-    }
-  } else if (includeUppercase === "Y" && includeLowercase === "Y") {    // Select random index in the alphabet array to make uppercase
-    for (var i=0; i<charactersAlphabet.length / 2; i++) {
-      charactersAlphabet[
-        Math.floor(Math.random() * charactersAlphabet.length)
-      ] = charactersAlphabet[
-        Math.floor(Math.random() * charactersAlphabet.length)
-      ].toUpperCase();
-    }
-  }
-  // Check that the password inludes numerical
-  if (includeNumerical === "Y") {
-    characterSelectors = characterSelectors.concat(charactersNumerical);
-    console.log(characterSelectors);
-  }
-  // Check that the password inludes special
-  if (includeSpecial === "Y") {
-    characterSelectors = characterSelectors.concat(charactersSpecial);
-    console.log(characterSelectors);
-  }
+   // set local variables with values originating from the passwordPrompts function
+   promptValues = passwordPrompts();
+   passwordLength = promptValues[0];
+   includeUppercase = promptValues[1];
+   includeLowercase = promptValues[2];
+   includeNumerical = promptValues[3];
+   includeSpecial = promptValues[4];
 
 
-  // Check that the password is between 8 and 128 characters
-  if (passwordLength < 8 || passwordLength > 128) {
+   // Check that the password is between 8 and 128 characters
+   if (passwordLength < 8 || passwordLength > 128) {
     prompt("Password is not between 8 and 128 characters, try again.");
   } else {
     for (var i=0; i<passwordLength;  i++) {   // Create a password with of the specified length
       password.push(characterSelectors[Math.round(Math.random() * characterSelectors.length)]);   // populate an array with the characters that are randomly selected from the give narray fo choices (charactersAlphabet)
-      console.log();
+      console.log(password);
     }
-  } 
+  }
+   
+   // Check for upper case
+  if (includeUppercase === "Y" && includeLowercase !== "Y") {
+    for (var i=0; i<password.length; i++) {
+      password[i] = password[i].toUpperCase()
+    }
+  }
+  //  Check for both upper and lower case
+   if (includeUppercase === "Y" && includeLowercase === "Y") {   // if only uppercase is selected, change the entire array to uppercase
+      password[password.length - 3] = password[password.length - 3].toUpperCase(); 
+   } 
+   // Check that the password inludes numerical
+   if (includeNumerical === "Y") {
+     numericalAppend = Math.floor(Math.random() * charactersNumerical.length)
+    password[password.length - 2] = charactersNumerical[numericalAppend];
+   }
+   // Check that the password inludes special
+   if (includeSpecial === "Y") {
+    specialAppend = Math.floor(Math.random() * charactersSpecial.length)
+    password[password.length - 1] = charactersSpecial[specialAppend];
+   }
   return password.join("");
 }
 
