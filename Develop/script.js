@@ -6,7 +6,7 @@ var charactersAlphabet = [
   "s", "t", "u", "v", "w", "x", "y", "z"
 ];
 var charactersNumerical = [
-  "1", "2", "3", "4", "5", "6", "7", "8", "9",
+  "1", "2", "3", "4", "5", "6", "7", "8", "9"
 ]
 var charactersSpecial = [
   "!", "@", "#", "$", "%", "^", "&", "*", 
@@ -68,17 +68,28 @@ function generatePassword() {
   }
   //  Check for both upper and lower case
    if (includeUppercase === "Y" && includeLowercase === "Y") {   // if only uppercase is selected, change the entire array to uppercase
-      password[password.length - 3] = password[password.length - 3].toUpperCase(); 
-   } 
+    for (var i=0; i<Math.floor(password.length / 3); i++) {
+      upperCaseReplaceIndex = Math.floor(Math.random() * password.length);
+      password[upperCaseReplaceIndex] = password[upperCaseReplaceIndex].toUpperCase();
+      console.log(upperCaseReplaceIndex);
+    }
+  } 
    // Check that the password inludes numerical
    if (includeNumerical === "Y") {
-     numericalAppend = Math.floor(Math.random() * charactersNumerical.length)
-    password[password.length - 2] = charactersNumerical[numericalAppend];
+
+    for (var i=0; i<Math.floor(password.length / 3); i++) {
+      numericalReplaceIndex = Math.floor(Math.random() * charactersNumerical.length);
+      PasswordReplaceIndex = Math.floor(Math.random() * password.length);
+      password[PasswordReplaceIndex] = charactersNumerical[numericalReplaceIndex];
+    }
    }
    // Check that the password inludes special
    if (includeSpecial === "Y") {
-    specialAppend = Math.floor(Math.random() * charactersSpecial.length)
-    password[password.length - 1] = charactersSpecial[specialAppend];
+    for (var i=0; i< password.length / 3; i++) {
+      specialReplaceIndex = Math.floor(Math.random() * charactersSpecial.length);
+      PasswordReplaceIndex = Math.floor(Math.random() * password.length);
+      password[PasswordReplaceIndex] = charactersSpecial[specialReplaceIndex];
+    }
    }
   return password.join("");
 }
