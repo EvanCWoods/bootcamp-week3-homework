@@ -10,6 +10,8 @@ The homework was to code the logic for a random password generator which created
 
 Most of the logic in the code is based on array methods and if statements to filter for the users specifications of the password.
 
+The code is curerntly set up to randomly select one quarter of the characters in the password, and change them to the user specified characters. The reason for one quarter is that there are four possible characters to be included, so it divides the password correctly into its component characters. 
+
 
 # Instructions
 
