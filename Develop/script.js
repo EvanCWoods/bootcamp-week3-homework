@@ -24,12 +24,12 @@ var charactersSpecial = [
 // Show password prompts
 function passwordPrompts() {
    // prompt for password length (8-128 characters)
-   var passwordLength = prompt("What is the length of the password");
+   var passwordLength = prompt("What is the length of the password (min:8, max: 128)");
    // prompt for uppercase, lowercase, numeric, special characters
-   var includeUppercase = prompt("Would you like to include uppercase characters?").toUpperCase();
-   var includeLowercase = prompt("Would you like to include lowercase characters?").toUpperCase();
-   var includeNumerical = prompt("Would you like to include numerical characters?").toUpperCase();
-   var includeSpecial = prompt("Would you like to include special characters?").toUpperCase();
+   var includeUppercase = prompt("Would you like to include uppercase characters? (Y/N)").toUpperCase();
+   var includeLowercase = prompt("Would you like to include lowercase characters? (Y/N)").toUpperCase();
+   var includeNumerical = prompt("Would you like to include numerical characters? (Y/N)").toUpperCase();
+   var includeSpecial = prompt("Would you like to include special characters? (Y/N)").toUpperCase();
 
   // Return an array of the values given by the user in the prompts
    return [   
